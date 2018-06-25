@@ -1,4 +1,5 @@
 #include "Bag.h"
+#include "Student.h"
 #include <iostream>
 #include<cassert>
 using std::cout;
@@ -9,6 +10,10 @@ namespace container{
 
 }
 	void Bag::erase(int key){  // receive key and erase the key along with element 
+	    int position = findposition (keyarray,key);
+		shiftdown(keyarray,position);
+		shiftdown(value,position);
+		count--;    // one less element 
 	}
 	void Bag::insert(const int key, const int val){ // insert the key and value in a sorted way. 
 		// we will first insert in to the key array then value
@@ -56,6 +61,14 @@ namespace container{
 			used--;
 			temp--;
 		}
+	}
+    void Bag::shiftdown (int *array, int index){   // shifts elements one postion down 
+ 
+    	while (size_t(index) < count){
+	    	array[index] = array[index+1];
+	        index++;
+		}
+		
 	}
 	
 	void Bag::view(int key){ // will print the information 

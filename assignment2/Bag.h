@@ -35,6 +35,7 @@
 #include <cstdlib>
 using std::size_t;
 
+
 namespace container {
 
 class Bag {
@@ -43,7 +44,8 @@ class Bag {
 		void erase(int key);  // receive key and erase the key along with element 
 		void insert(const int key, const int value); // insert the key and value in a sorted way. 
 		int  findposition(int *array,const int number); // returns the postion of the where the key will go. 
-		void shiftup( int *array, const int index);
+		void shiftup  ( int *array, const int index);
+		void shiftdown (int *array,int index);
 		void view(int key); // will print the information 
 		size_t  size() const {return count; };
 		bool isempty();
