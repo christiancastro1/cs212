@@ -31,27 +31,30 @@
 
 
 #ifndef bag_h
-define  bag_h
-
+#define  bag_h
+#include <cstdlib>
+using std::size_t;
 
 namespace container {
 
-class bag {
+class Bag {
 	public:
-		bag ();   // constructor 
+		Bag ();   // constructor 
 		void erase(int key);  // receive key and erase the key along with element 
 		void insert(const int key, const int value); // insert the key and value in a sorted way. 
-		void shift( int *&keyarray , int *&valuearray, const int index);
-		void view(int key) // will print the information 
-		int  size() const {return count; };
+		int  findposition(int *array,const int number); // returns the postion of the where the key will go. 
+		void shiftup( int *array, const int index);
+		void view(int key); // will print the information 
+		size_t  size() const {return count; };
 		bool isempty();
-		bag operator +=(const bag &bag2){return *this;};
+		void print ();
+		Bag operator +=(const Bag &bag2);
 
 	private: 
 		static const int MAXIMUM = 30;
-		int value[MAXIMUM];   // keeps track of values 
-		int key[MAXIMUM] ;    // keeps track of key to values 
-		int count;            // number of elements in the bag
+    	int value[MAXIMUM];   // keeps track of values 
+		int keyarray[MAXIMUM] ;    // keeps track of key to values 
+		size_t count;            // number of elements in the bag
 
 };
 
