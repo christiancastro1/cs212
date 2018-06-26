@@ -1,4 +1,9 @@
-/*  GOAL: This class is a data structure called a bag, it will hold infomation 
+/* NAME : CHRISTIAN CASTRO 
+ * CLASS: CSC212
+ * Date Finished : June 25, 2018
+ *
+ *
+ *  GOAL: This class is a data structure called a bag, it will hold infomation 
  *  based on what the user inputs. A key attached to an  actual value. Every time 
  *  a user inputs a key it will automatically be sorted. The delete function will 
  *  shift elments if needed.
@@ -15,10 +20,10 @@
  *       4. view        : precondition: array of elements is not empty. // post : prints the imformation of the key value
  *       5. CONST : int size()   post: returns the number of elements 
  *       6. bool isempty : post : retuns true if its empty else false
- *       5. +=  overloaded: // precondition : sum of bag size < max     post: sum of both 
- *       6 . NON MEMBER : + overloaded  precondition : size of both bags < max   post: return sum; 
- *
- *
+ *       7. void shiftup  () this function will be overloaded twice, one for student and one for key array   precondition: receives an array and index from 
+ *       where to start.   post : shift elements up one position
+ *       8. void shiftdown() this function will shift elements down, precondition : receives an array and index, post : array shifted down 
+
  *        private:
  
  *        variables  : array of keys:     // keeps track of the key 
@@ -27,9 +32,6 @@
  *                   : capcity          // the max number of elements allowed in the bag 
  *
  */
-
-
-
 #ifndef bag_h
 #define  bag_h
 #include <cstdlib>
@@ -43,19 +45,22 @@ class Bag {
 	public:
 		Bag ();   // constructor 
 		void erase(int key);  // receive key and erase the key along with element 
-		void insert(const int key, const int value); // insert the key and value in a sorted way. 
-		int  findposition(int *array,const int number); // returns the postion of the where the key will go. 
-		void shiftup  ( int *array, const int index);
-		void shiftdown (int *array,int index);
-		void view(int key); // will print the information 
+		void insert(const int key, const Student value); // insert the key and value in a sorted way. 
+        void view(int key); // will print the information 
 		size_t  size() const {return count; };
 		bool isempty();
 		void print ();
-		Bag operator +=(const Bag &bag2);
 
+		int  findposition(int *array,const int number); // returns the postion of the where the key will go. 
+		void shiftup  ( int *array, const int index);
+		void shiftdown (int *array,int index);
+
+        void shiftup  ( Student *array, const int index);
+        void shiftdown (Student *array, int index);
+	
 	private: 
 		static const int MAXIMUM = 30;
-    	int value[MAXIMUM];   // keeps track of values 
+    	Student value[MAXIMUM];   // keeps track of values 
 		int keyarray[MAXIMUM] ;    // keeps track of key to values 
 		size_t count;            // number of elements in the bag
 

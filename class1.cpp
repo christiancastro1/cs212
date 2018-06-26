@@ -422,20 +422,39 @@ e.g
 	 {
 	    delete [] data;
 	 }
-	 
-
-
-
-	
-
-
  */
 
-   TODO: Whats the difference of static and dynamic array. 
+ /*  TODO: Questions 
+   1. Whats the difference of static and dynamic array. 
    Statics is a constant pointer e.g int * cosnt thats why it only points to the first element. Thats 
    why we have to add a value to move.
    Dynamic array is usually non constant 
 
+   2. WHats the difference between variables on the stack and the dynamic?
+   -variables in the stack have an identifier while the ones in the dynamic dont. 
+   -variables in the stack are managed by the computer while the ones on the heap 
+   are managed by the programmer. 
+    3. Can you increased the size of the a dynamic array ? NO 
+
+	4. What is an object ? Object is an instance of the type the user creates. 
+	5. WHats the difference of a class and object ? Class is the definition of the data type, object is an instance 
+	of that class.
+	6. Whats is the state of an object ? the variables are the state of the objects, basically the invariants. if two
+	objects have the same information then they have equal state.
+
+	7. WHat happens to the default constrcutor when another contructor is created ? it becomes available
+	8. What is a friend function ?
+	9. Another time encapsulation doesnt happen ? object instances of the same class dont have encapsulation. 
+	10. Whats is a macro gaurd ?
+	11. WHat is namespace ? 
+	12. Prototype of nonmember function should be in class definition, when we include the header file it will say that 
+	these functions exist, then the linker will link to the class implementation. 
+	13. 
+
+
+
+	*/
+	
 
 
   

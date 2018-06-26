@@ -31,7 +31,6 @@ namespace container{
 		value[position] = val;
 		count++;
 		}
-
 	}
     int Bag ::findposition (int *array, const int number){
 
@@ -102,7 +101,7 @@ namespace container{
 	}
     void Bag::print (){
 		for (size_t i = 0; i <= count-1;i ++){
-			cout <<  value[i] << " "; 
+			cout << keyarray [i] << " "; 
 		}
 
 	}
