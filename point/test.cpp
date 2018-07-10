@@ -13,6 +13,18 @@ int main ()
    //	Point p2(p1);
    //Point p2(10.0,6.0);
    
-	cout << "This is point for x" << p2.x() << " and this is y" << p2.y();
+//	cout << "This is point for x" << p2.x() << " and this is y" << p2.y();
+ //   int a = 7;
+//	int &b = a;
+
+	int a = int();
+	a+;
+	:cp
+
+
+
+
+	cout << a;
+
 	return 0;
 }

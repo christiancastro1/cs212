@@ -423,7 +423,140 @@ e.g
 	    delete [] data;
 	 }
  */
+/*NOTE LINK LIST
+1. Each node in the linked list is a class as shown here.
+e.g  class node {
+     public:                        // what is a node? A note is basically an object that contains a date field and a link and a link
+	                                  to the next node.
+	 tydef int value_type;
 
+	 private:
+     value_type data;
+	 node *link;         // its a pointer to another node type
+
+1. WHen the list is empty the *link pointer will point to nothing basically: NULL , nullptr.
+2. A program can keep tack of the first node by using a pointer variable such as head_prt.
+NOTE: The head_prt itself is not a node -- its a pointer to a node. 
+
+3. If you make a link list in the stack you can't motify it in  another function. For this reason 
+we will store the in the heap. 
+
+4. All the nodes will be in the heap, we will have a pointer that points to the first node.
+    -first node shouldn't be on the stack because we wouldnt be able to add a node to the beginning.
+
+5. In memory they aren't connected sequentially, they just point to the adress of the next node. 
+
+ADVANTAGES: -The size of the list can grow as needed, by allocating and dealocating during run time. 
+            -no memory waste. 
+
+DISADVANTAGE -to see a certain element it takes O(N),since it has to iterate thought the entire list.›
+
+B. The node class is fundamental to linked lists
+    a. The private member variables 
+
+
+
+	HEAD POINTERS 
+------------------------------
+the most common way to access a linked list is through the first element. AKA HEAD OF THE LIST
+- a pointer that points to the head is known as the head pointer. e.g node *headprt;
+
+  We can access the information that of the node that this pointer points to. e.g (*headprt).get_data()   or headprt->get_data()
+  The parenthesis are necessary for this because the function get_data has a higher precedence thatn the dereference operator. 
+
+  Alternative way: MEMBER SELECTION OPERATOR(->)    e.g headprt->get_data();
+
+     TAIL POINTER
+------------------------------
+We also can have access to the last element by having a pointer that points to the tail. AKA TAIL POINTER
+
+------------------------------
+   -When a node doesnt point at anything we cant use the variable NULL OR nulptr to make the explicit. 
+
+   2 types of situations: 
+         1. the final node points to nothing.
+		 2. the list is empty, theres nothing to point.
+
+      CONSTRUCTOR 
+------------------------------
+the default constructor for the node is e.g 
+
+node ( const value_type &init_data = value_type()    // typedef int value_type;     using  the built in typye constructor, same as int () 
+       cont  node *init_link = NULL ); 
+
+The constructors implementation merely copies init_datav to data and init_link to link,
+
+
+      CONST NODE OBJECTS 
+------------------------------
+-if we create a const node * pointer then we can't access non constant functions.
+-We are restricted from using non constant function to enoforce encapsulation, because the node is constant.
+
+   IDEA: If we want to have a constant node that doesnt change, then we need a constant link function, Because if we had 
+   a regular pointer, then it can easily access the nonmemeber functions and change the information. 
+
+- this pointer will ony be able to access constant functions. 
+- nonconstant objects can access constant and nonconstant functions but, constant objects can  only can access constant functions. 
+- a constant function should never provide information that can be later used to alter the link list.
+
+When to provide both const and noncont versoin of a memeber function ?
+   -when the return value of a memeber function is a pointer to a node, you should generally 
+   have two versions. a const version that returns a const node*, and an ordinary version that returns and ordinary poiter to a node. 
+   
+   e.g 1: Nonconstant :  node* link () {return link;};
+       2: constant    :  const node* link () const {return link;};
+   
+
+ */
+ /*NOTE TEMPLETE PROGRAMING 
+    *Suppose your progam uses 1000000 different data types and you need a maximum function for each....??
+    
+	- Templete function, that will be completed during call time. It will be initialize depending on the actual parameters.
+	
+	e.g  templete <class Item>   // Item is a type  variable.
+	     Item maximum (Item a, Item b)
+		 {  
+		    if (a > b) return a;
+			else       return b; 
+		 }
+   The compiler looks at the function call and it goes to the templete code and infers to the type variable. Then the compiler generates the 
+   function based on the type thats needed. 
+
+   - the linker does not work for templete programming. 
+   - the type variable is used at least once in the parameter list. Or else it will give an error.
+
+   e.g: 
+   templete <typename item>
+   int compare (item a, item b) {
+     if (a > b) return 1;
+
+	 if (a < b) return -1;
+
+	 return 0;
+   }
+
+
+   int main ()
+   {
+     cout << compare(1,2) << endl;
+	 cout << compare(1.2,1.1) << endl;
+   }
+   
+   Templete is only header. 
+
+
+   ITERATOR
+------------------------------ 
+iterator is a class, the * and ++ need to be overloaded.
+5 operators should be overloaded for the iterator 
+
+
+
+
+
+
+
+  */
  /*  TODO: Questions 
    1. Whats the difference of static and dynamic array. 
    Statics is a constant pointer e.g int * cosnt thats why it only points to the first element. Thats 
@@ -457,7 +590,9 @@ e.g
 	
 
 
-  
+DATE: 6/28/18 
+
+
 
 
 
