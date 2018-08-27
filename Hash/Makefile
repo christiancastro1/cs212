@@ -3,7 +3,7 @@ OBJECTS := $(SOURCES:.c=.o)
 OBJECTS := $(OBJECTS:.cpp=.o)
 HEADERS := $(wildcard *.h include/*.h)
 
-COMMON   := -O2 -Wall -Wformat=2 -march=native
+COMMON   := -O2 -Wall -g -Wformat=2 -march=native   #i added  -g for debugging 
 # COMMON   := -O0 -Wall -Wformat=2 -march=native
 CFLAGS   := $(CFLAGS) $(COMMON)
 CXXFLAGS := $(CXXFLAGS) $(COMMON)

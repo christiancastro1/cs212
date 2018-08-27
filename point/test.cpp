@@ -1,6 +1,7 @@
 #include "point.h"
 #include <iostream>
 using namespace std;
+
 using Summer::Point;
 
 int main ()
@@ -16,15 +17,27 @@ int main ()
 //	cout << "This is point for x" << p2.x() << " and this is y" << p2.y();
  //   int a = 7;
 //	int &b = a;
-
-	int a = int();
-	a+;
-	:cp
+	cout << max(7,9);
 
 
 
 
-	cout << a;
+
+
+
+
 
 	return 0;
+}
+template <typename Item>
+Item max (Item x1, Item x2){
+	if (x1 > x2){
+		return x1;
+	}
+	else return x2;
+
+
+
+
+
 }

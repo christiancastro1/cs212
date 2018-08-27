@@ -508,18 +508,28 @@ When to provide both const and noncont versoin of a memeber function ?
    
 
  */
- /*NOTE TEMPLETE PROGRAMING 
+ /*NOTE TEMPLETE PROGRAMING
+  *
+   TEMPLETE FUNCTION
+------------------------------
     *Suppose your progam uses 1000000 different data types and you need a maximum function for each....??
     
 	- Templete function, that will be completed during call time. It will be initialize depending on the actual parameters.
 	
-	e.g  templete <class Item>   // Item is a type  variable.
+	e.g  templete <class Item>  // This is called a *templete prefix* // Item is a template parameter. 
 	     Item maximum (Item a, Item b)
 		 {  
 		    if (a > b) return a;
 			else       return b; 
 		 }
-   The compiler looks at the function call and it goes to the templete code and infers to the type variable. Then the compiler generates the 
+		 Alternative way instead of <class Item> is <typename Item> but older compilers dont support this. 
+
+	One simple solutuion would be to add a typedef add the top and change it to another type but, this would only work 
+	if this type has > defined, also since its being passed by value it uses the copy constructor so that also needs to be defined.
+
+	1. Templete programming allows us to call a function as many times as we want with different types.
+
+   2.The compiler looks at the function call,examines the type of the arguments. Then the compiler generates the 
    function based on the type thats needed. 
 
    - the linker does not work for templete programming. 
@@ -541,8 +551,49 @@ When to provide both const and noncont versoin of a memeber function ?
      cout << compare(1,2) << endl;
 	 cout << compare(1.2,1.1) << endl;
    }
+   This functions compared can be used by any primative type or any class the has the >,< and copy constructor defined. 
+
+   TEMPLETE CLASSES 
+------------------------------
+   1. Templete prefix should go right before the class defenition. e.g
+   templete <class Item>
+   class bag {}
+
+   - Item is now defined and can be used just like any other data type. 
+
+	OUTSIDE OF THE TEMPLETE DEFENITION (AFTER THE SEMICOLON ON THE CLOSING BRACKET):
+
+	2. The templete prefix is put before function prototype and defenition, for memember and nonmemeber functions.
+	These are now templete functions. 
+    
+	3. Any used of Bag is now going to be Bag< Item >, this tells the compiler that its a templete class.Except the constructor
+        e.g:  templete<class Item>
+		      bag<Item> operator +(cosnt bag<Item>& b1, const bag<Item>&bag2)
+
+		e.g constructor: templete<class item>
+		                 bag <item> :: bag ()
+
+	4. Outside of the class defintion to use a certain type like size_type,  we must add typename to tell the compiler that the 
+	expression bag<item> :: size_type is the name of a data type.
+	    e.g : before : bag::size_type bag:: count (const value_type& target)const ...
+              
+		Now : templete<class Item>
+		       typename bag<Item>::size_type  bag<Item>::count(const value_type& target)const
+
+
+	In the header file (class definition ) it is required to have the function defenitions but we would like 
+    to keep the implementation in a seperate file. For this reason we will use the preprocessor directive include at 
+	the bottom of the header file.
+
+	IMPORTANT: In the implementation file avoid the use of using. e.g using std; instead std::cout ...
+	-Implementation file name is bag4.template
    
-   Templete is only header. 
+	USING TEMPLETE CLASS 
+------------------------------
+  bag <string> b1;
+  bag <int >  b2;
+
+  The templete parameter has been instantiated
 
 
    ITERATOR
@@ -557,6 +608,109 @@ iterator is a class, the * and ++ need to be overloaded.
 
 
   */
+/*NOTE RECURSIVE THINKING
+ * SEE AT LECTURE 1 hello.cpp
+ */
+ /*NOTE BINARY TREES
+  * We can partition the data to make it easier to search for a specific data.
+    - the data is compressed 
+
+ A binary tress is made out of nodes just like the link list. 
+   - The top most node is the root that doesnt have a parent.
+   - A node can contain two childs at most, left and right child
+   - a node that doesnt contains a child is called a leaf. 
+   - two nodes with the same parent are called siblings
+ DEF: Ancestor is the parent of the parent until you reach the root.
+      Decendant is the children of a node. 
+	  Depth of a tree, maximum depth of a leave, count up until you reach root.
+
+ 1.  A full binary tree (sometimes proper binary tree or 2-tree) is a tree in which every node other than the leafs has two children.
+     - the depth of each leave is the same
+
+ 2.  A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as 
+     far left as possible.  
+ 3. Balance ??
+
+ ARRAY REPRESENTATION OF B-TREE
+------------------------------ 
+We can represent a complete binary tree as an array, starting from the root at index 0.
+From left to right, the left child takes the next position then the right and so on. 
+e.g    A
+      / \
+	 L  G
+	/ \ / \
+   O  R I T
+  /\ /
+ H M S
+
+ array: A L G O R I T H M S
+ index: 0 1 2 3 4 5 6 7 8 9
+
+ Benefits of array representation: 
+
+ 1. Root is at index 0 
+ 2. A nonroot parent can be found at location (i-1/2).  e.g R is at index 4, its parent is L. 
+    - so (4-1)/2 = 1. As we can see L is at index 1.
+ 3. Suppose a node is at index i, if it has chidren then the location would be
+    - left: 2i+1
+	- right:2i+2
+
+	TRAVERSAL OF B-TREE
+------------------------------------------------------------
+1. PREORDER TRAVERAL
+   - process the root
+   - process the left of the node with recursive call
+   - process the right of the node with recursive call
+
+2. INORDER TRAVERSAL 
+   - process the nodes in the left subtree recursively
+   - process the root 
+   - process the nodes in right subtree recursively 
+
+3. POST ORDER TRAVERSAL 
+   - process the nodes in the left subtree recursively
+   - process the nodes in the right subtree recursively
+   - process the root
+
+
+
+
+	 
+Pesudocode for delete_tree;
+
+delete_tree (root)
+   if (root == nullptr)
+   return 
+   delete_tree (root->left);
+   delete_tree (root->right)
+   delete root;
+
+preorder, and inorder. Any tree,
+
+Predecesor, subsecor ?? 
+  */
+ /*NOTE HASH TABLES
+   Hash value is an index of where the value will be inserted. 
+   Hash function receives a value and returns an index. 
+   
+   e.g size % value = index
+
+   If the keys are the same the values will be replaced... when we have hash conflicts 
+   we chaine the values.
+   Array of pointer to head of link list. 
+
+   Hash table insertion is O (1) because we just need to calculate the remainder of the key over the 
+   size, getting a value index. Then we just need to insert into an array. 
+
+   - load factor of hash table how much data is stored based on the size. f
+   -hash table you need key and value. 
+   
+
+  */
+ /*NOzTE HEAP
+  * a heap is a kind of complete binary tree.
+  * priority que are the same, maxium priority is on top
+*/
  /*  TODO: Questions 
    1. Whats the difference of static and dynamic array. 
    Statics is a constant pointer e.g int * cosnt thats why it only points to the first element. Thats 
@@ -582,13 +736,42 @@ iterator is a class, the * and ++ need to be overloaded.
 	11. WHat is namespace ? 
 	12. Prototype of nonmember function should be in class definition, when we include the header file it will say that 
 	these functions exist, then the linker will link to the class implementation. 
-	13. 
+	13. WHat is the running time for insertion in hash table ? O(1)
+	14. WHy do we need 
+	15. Heap insert using an array. Need to know the formulas. 
 
 
 
 	*/
-	
+/*NOTE SORTING ALGORYTHM
+ * Quadratic Algorythm: Insertion sort O (n^2)
 
+
+
+
+   
+
+
+
+ */
+#if 0	
+Array search - unsorted O(n)
+	          - sorted O(log n)
+ Binary tree insert - worst O (n)    balance and not balance. 
+	             - best (log n)
+
+Compare all data structures best,worst and average. 
+
+Unordered list : search : O (n)     insert: O (1)                 remove: O(1)      Average: n +1 + 1 = O(n)
+ORDER list     : search : O (log n) insert: O (n) cause of shift  remove: O(n)      Average:O (n)
+Balanced Tree  : search : O (log n )insert: O (log n)             remove: O(log n ) Average: O(n)
+	 
+Full leafs are in the same level  : every full is a balance
+complete tree is balance
+
+Balance tree: leafs are almost in the same level.
+        
+#endif 
 
 DATE: 6/28/18 
 
@@ -598,7 +781,6 @@ DATE: 6/28/18
 
 
  
-
 
 
 
