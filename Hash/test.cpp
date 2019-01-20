@@ -3,10 +3,11 @@
 #include "BTNode.h"
 #include "HashBucket.h"
 #include <iostream>
-
+#include <vector>
 int main  (){
 	
 	BTNode<int >* root = new BTNode<int>(87);
+	std::vector<int> array;
 
 	insert(root,56);
 	insert(root,93);
@@ -16,8 +17,11 @@ int main  (){
 	insert(root,38);
 	insert (root,47);
 
-		printpreorder(root);
+	printinorder(root,array);
 
+	for (size_t i = 0; i < 8 ; i++) {
+		std::cout << array[i] << " ";
+	   	}
   return 0;
 
 

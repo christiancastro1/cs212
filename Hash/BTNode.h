@@ -2,6 +2,7 @@
 #define BTNode_H
 #include "Node.h"
 #include<iostream>
+
 template <class type>
 class BTNode : public Node<type> {
 
@@ -39,6 +40,7 @@ class BTNode : public Node<type> {
 
 
 };
+#include<vector>
 template <class type>
 void insert(BTNode<type>* root,const type data){
 
@@ -69,11 +71,12 @@ void printpreorder(BTNode<type>* root){ // preorder
 	printpreorder (root->getnext());
 }
 template <class type>
-void printinorder (BTNode<type>* root) {
+void printinorder (BTNode<type>* root,std::vector<int>&array) {
 	if(root == nullptr)return;
-	printinorder (root->getleft());
-	std :: cout << root->getdata()<< " ";
-	printinorder (root->getnext());
+	printinorder (root->getleft(),array);
+	array.push_back(root->getdata());
+	printinorder (root->getnext(),array);
+
 }
 template <class type>
 void printpostorder(BTNode<type>* root){
